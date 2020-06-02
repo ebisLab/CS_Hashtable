@@ -1,0 +1,17 @@
+bad characteristics of hashing function => loosing data => 
+                                            determenistic same number comes out everytime
+                                            too many collisions
+
+                                            wasting half the table
+
+                                we need even distributions
+
+advantages of binary table vs hash table:
+            speed?
+            collisions
+            code simplicity
+            sorting before starting ==> you have to do that on binary search
+
+            trade off speed for memory => hash i have to allocate more memory ahead of time. 
+            there's no key converstions for binary trees
+                    

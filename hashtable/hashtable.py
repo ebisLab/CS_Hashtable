@@ -1,3 +1,17 @@
+"""
+Psuedo Code:
+2
+PUT:
+3
+Find the hash index
+4
+Search the list for the given key,
+5
+If given key already exists: simply overwrite / repalce the value of that key
+6
+It it's not: append the new record to the list"""
+
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -86,6 +100,20 @@ class HashTable:
         Implement this, and/or FNV-1.
         """
         # Your code here
+        # uses num that are prime to each other =>24/5
+        # goal: bc they are offset to each other, they are less likely to produce collision
+        # hash value
+
+        str_key = str(key).encode()
+
+        # Start from an arbitrary large prime
+        hash_value = 5381
+        # Bit-shift and sum value for each character
+        for b in str_key:
+            # << = bitwise operator, left shift by 5 places (multiplying 2^5)
+            hash_value = ((hash_value << 5) + hash_value) + b
+            hash_value &= 0xffffffff  # DJB2 is a 32-bit hash, only keep 32 bits
+        return hash_value 
 
     def hash_index(self, key):
         """
@@ -130,6 +158,7 @@ class HashTable:
         """
         # Your code here
         return self.data[self.fnv1(key)].value
+# resize table when it gets too loaded
 
     def resize(self, new_capacity):
         """
